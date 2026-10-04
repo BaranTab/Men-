@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Menü</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f4f0;--card:#fff;--ink:#1d2b27;--mute:#66736e;--line:#d5dcd6;--brand:#1f3d35;--brand2:#2f6b5a;--accent:#e0a93a;--brandtxt:#f2f4f0;--sh:0 8px 22px rgba(31,61,53,.14)}
+@media(prefers-color-scheme:dark){:root{--bg:#101815;--card:#1a2420;--ink:#e8eee9;--mute:#93a29b;--line:#2c3a34;--brand:#0c1512;--brand2:#1d4a3d;--brandtxt:#e8eee9;--sh:0 8px 22px rgba(0,0,0,.4)}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.45 'DM Sans',system-ui,sans-serif;overflow-x:hidden}
+button{font:inherit;cursor:pointer}
+/* ANA SAYFA */
+header{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 0,var(--brand2),var(--brand) 70%);color:var(--brandtxt);padding:calc(30px + env(safe-area-inset-top)) 20px 60px;text-align:center}
+header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:34px;background:var(--bg);clip-path:ellipse(60% 100% at 50% 100%)}
+.fl{position:absolute;bottom:-40px;font-size:1.8rem;opacity:0;animation:rise linear infinite;pointer-events:none}
+@keyframes rise{0%{transform:translateY(0) rotate(0);opacity:0}15%{opacity:.5}100%{transform:translateY(-300px) rotate(40deg);opacity:0}}
+.cup{width:100px;height:100px;margin:0 auto 4px;display:block;animation:bob 3.5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.steam{fill:none;stroke:#fff;stroke-width:4;stroke-linecap:round;opacity:0;animation:steam 2.6s ease-in-out infinite}
+.steam:nth-of-type(2){animation-delay:.8s}.steam:nth-of-type(3){animation-delay:1.6s}
+@keyframes steam{0%{opacity:0;transform:translateY(8px)}40%{opacity:.8}100%{opacity:0;transform:translateY(-14px)}}
+header h1{position:relative;font:800 clamp(2.2rem,9vw,3.4rem)/1.05 'Fraunces',Georgia,serif}
+header h1 span{display:inline-block;opacity:0;transform:translateY(24px) scale(.8);animation:pop .6s cubic-bezier(.2,1.4,.4,1) forwards}
+@keyframes pop{to{opacity:1;transform:none}}
+header p{position:relative;margin-top:8px;opacity:0;animation:pop .8s .9s forwards;letter-spacing:.04em}
+.lead{max-width:720px;margin:0 auto;padding:6px 18px 0;text-align:center;color:var(--mute)}
+.tiles{max-width:720px;margin:0 auto;padding:16px 16px 50px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(min-width:700px){.tiles{grid-template-columns:repeat(3,1fr)}}
+.tile{position:relative;overflow:hidden;border:0;border-radius:22px;min-height:150px;padding:18px;text-align:left;color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:var(--sh);display:flex;flex-direction:column;justify-content:flex-end;animation:tin .6s cubic-bezier(.2,1.2,.4,1) both;animation-delay:calc(var(--i)*70ms + 500ms);transition:transform .3s,box-shadow .3s}
+@keyframes tin{from{opacity:0;transform:translateY(40px) scale(.85)}}
+.tile:hover{transform:translateY(-6px) rotate(-1deg);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.tile:active{transform:scale(.94)}
+.tile b{position:absolute;right:-4px;top:6px;font-size:4.6rem;line-height:1;transition:transform .5s;animation:bob 4s ease-in-out infinite;animation-delay:calc(var(--i)*-.5s)}
+.tile:hover b{transform:scale(1.2) rotate(14deg)}
+.tile strong{position:relative;font:800 1.2rem/1.15 'Fraunces',Georgia,serif}
+.tile small{position:relative;opacity:.85;margin-top:2px}
+.tile:last-child:nth-child(odd){grid-column:1/-1;min-height:120px}
+.tile:focus-visible,.back:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+/* KATEGORİ SAYFASI */
+#page{position:fixed;inset:0;z-index:50;background:var(--bg);overflow-y:auto;display:none;-webkit-overflow-scrolling:touch}
+#page.open{display:block}
+.ph{position:sticky;top:0;z-index:5;color:#fff;background:linear-gradient(120deg,var(--c1),var(--c2));padding:calc(14px + env(safe-area-inset-top)) 16px 16px;box-shadow:var(--sh);overflow:hidden}
+.ph .row{display:flex;align-items:center;gap:12px;max-width:760px;margin:0 auto}
+.back{flex:none;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.25);color:#fff;font-size:1.4rem;transition:transform .25s,background .25s}
+.back:hover{background:rgba(255,255,255,.4);transform:translateX(-4px)}
+.ph h2{font:800 1.5rem/1.15 'Fraunces',Georgia,serif;flex:1}
+.ph b{position:absolute;right:10px;top:50%;font-size:4rem;opacity:.3;transform:translateY(-50%) rotate(-12deg)}
+.ph input{display:block;width:100%;max-width:760px;margin:12px auto 0;padding:11px 16px;border-radius:99px;border:0;background:rgba(255,255,255,.92);color:#1d2b27;font:inherit;position:relative}
+.ph input:focus{outline:3px solid rgba(255,255,255,.55)}
+.body{max-width:760px;margin:0 auto;padding:6px 16px calc(50px + env(safe-area-inset-bottom))}
+h3{font:600 1.1rem 'Fraunces',Georgia,serif;color:var(--mute);margin:22px 0 4px;display:flex;align-items:center;gap:10px}
+h3::after{content:"";flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px)}
+.grid{display:grid;gap:10px;margin-top:10px}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+.item{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:16px;padding:10px 14px 10px 10px;box-shadow:0 1px 3px rgba(0,0,0,.07);animation:up .5s cubic-bezier(.2,1,.4,1) both;animation-delay:calc(var(--i)*40ms + 450ms);transition:transform .25s,box-shadow .25s}
+@keyframes up{from{opacity:0;transform:translateY(24px)}}
+.item:hover{transform:translateY(-4px) scale(1.02);box-shadow:var(--sh)}
+.ic{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:1.7rem;background:color-mix(in srgb,var(--c1) 16%,var(--card));overflow:hidden;transition:transform .35s}
+.ic img{width:100%;height:100%;object-fit:cover}
+.item:hover .ic{transform:rotate(-10deg) scale(1.15)}
+.n{flex:1;font-weight:500;line-height:1.25}
+.p{flex:none;font-weight:700;font-variant-numeric:tabular-nums;background:color-mix(in srgb,var(--accent) 22%,var(--card));padding:5px 11px;border-radius:99px;font-size:.92rem;transition:background .25s}
+.item:hover .p{background:var(--accent);color:#1d2b27}
+.empty{display:none;text-align:center;color:var(--mute);padding:40px 0}
+/* HER KATEGORİYE ÖZEL GEÇİŞ */
+#page[class*=" t-"]{animation-duration:.8s;animation-fill-mode:backwards;animation-timing-function:cubic-bezier(.65,0,.25,1)}
+#page.t-ana{animation-name:t-ana}      /* tıklanan yerden daire açılır */
+#page.t-salata{animation-name:t-salata}/* soldan kayar */
+#page.t-sandvic{animation-name:t-sandvic}/* ortadan ikiye açılır */
+#page.t-kahvalti{animation-name:t-kahvalti;animation-timing-function:cubic-bezier(.2,1.3,.4,1)}/* yumurta gibi büyür */
+#page.t-sicak{animation-name:t-sicak}  /* buhar gibi netleşir */
+#page.t-soguk{animation-name:t-soguk}  /* buz gibi kayar */
+#page.t-tatli{animation-name:t-tatli}  /* kitap gibi çevrilir */
+#page.t-firin{animation-name:t-firin;animation-timing-function:cubic-bezier(.3,1.6,.5,1)}/* aşağıdan zıplar */
+#page.t-ozel{animation-name:t-ozel}    /* çapraz süpürür */
+@keyframes t-ana{from{clip-path:circle(0 at var(--x,50%) var(--y,50%))}to{clip-path:circle(150% at var(--x,50%) var(--y,50%))}}
+@keyframes t-salata{from{transform:translateX(-100%)}}
+@keyframes t-sandvic{from{clip-path:inset(48% 0 48% 0)}to{clip-path:inset(0)}}
+@keyframes t-kahvalti{from{transform:scale(.2);opacity:0;border-radius:50%}}
+@keyframes t-sicak{from{opacity:0;filter:blur(24px);transform:translateY(-60px) scale(1.1)}}
+@keyframes t-soguk{from{transform:translateX(100%) skewX(-14deg)}}
+@keyframes t-tatli{from{transform:perspective(1000px) rotateY(-95deg);transform-origin:0 50%}to{transform:perspective(1000px) rotateY(0);transform-origin:0 50%}}
+@keyframes t-firin{from{transform:translateY(100%)}}
+@keyframes t-ozel{from{clip-path:polygon(0 0,0 0,0 0);filter:hue-rotate(120deg)}to{clip-path:polygon(0 0,260% 0,0 260%);filter:hue-rotate(0)}}
+#page.leave{animation:leave .35s ease-in forwards!important}
+@keyframes leave{to{opacity:0;transform:scale(.94) translateY(24px)}}
+#home.back-in{animation:hin .5s ease both}
+@keyframes hin{from{opacity:.4;transform:scale(.96)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="home">
+<header id="hero">
+<svg class="cup" viewBox="0 0 110 110" aria-hidden="true"><path class="steam" d="M40 34c-6-8 6-12 0-22"/><path class="steam" d="M56 34c-6-8 6-12 0-22"/><path class="steam" d="M72 34c-6-8 6-12 0-22"/><path d="M26 44h58v22a24 24 0 0 1-24 24h-10a24 24 0 0 1-24-24z" fill="#e0a93a"/><path d="M84 52h6a10 10 0 0 1 0 20h-8" fill="none" stroke="#e0a93a" stroke-width="6"/><ellipse cx="55" cy="44" rx="29" ry="5" fill="#7a4a21"/><ellipse cx="55" cy="98" rx="38" ry="5" fill="#000" opacity=".2"/></svg>
+<h1 id="name"></h1><p>Dijital Menü · Afiyet olsun</p>
+</header>
+<p class="lead">Bir kategori seçin</p>
+<nav class="tiles" id="tiles"></nav>
+</div>
+<div id="page" role="dialog" aria-modal="true"></div>
+
+<script>
+/* Kafe adını buradan değiştir */
+const CAFE_NAME = "Kafe Menüsü";
+
+const MENU = [
+{id:"ana",t:"🍽️ Ana Yemekler",g:[
+ ["Tavuk Yemekleri","Köri Soslu Tavuk~450|Mantar Soslu Tavuk~450|Barbekü Soslu Tavuk~440|Çıtır Tavuk Sepeti~420|Tavuk Schnitzel~450|Tavuklu Fettuccine~460|Tavuklu Penne~440|Tavuklu Quesadilla~420"],
+ ["Et Yemekleri","Etli Fettuccine~520|Etli Penne~510|Et Sote~550|Izgara Köfte~500|Etli Quesadilla~480|Dana Burger~490|Cheddar Soslu Et~560"],
+ ["Burgerler","Klasik Burger~430|Cheeseburger~450|BBQ Burger~460|Mushroom Burger~470|Çıtır Tavuk Burger~420|Double Burger~520"],
+ ["Makarna","Napoliten Makarna~380|Bolonez Makarna~420|Alfredo Makarna~400|Mantarlı Kremalı Makarna~410|Tavuklu Kremalı Makarna~440|Pesto Soslu Makarna~400"],
+ ["Pizza","Margherita Pizza~390|Karışık Pizza~450|Tavuklu Pizza~440|Pepperoni Pizza~460|Dört Peynirli Pizza~450|Mantarlı Pizza~420"],
+ ["Atıştırmalıklar","Patates Kızartması~220|Baharatlı Patates~240|Çıtır Tavuk Parçaları~320|Soğan Halkası~220|Mozzarella Stick~280|Nachos~300|Karışık Atıştırmalık Tabağı~450"]]},
+{id:"salata",t:"🥗 Salatalar",g:[["","Sezar Salata~350|Tavuklu Sezar Salata~420|Ton Balıklı Salata~400|Akdeniz Salata~350|Hellim Peynirli Salata~390|Izgara Tavuklu Salata~420"]]},
+{id:"sandvic",t:"🥪 Sandviçler & Tostlar",g:[["","Karışık Tost~280|Kaşarlı Tost~250|Sucuklu Kaşarlı Tost~290|Kavurmalı Kaşarlı Tost~340|Club Sandwich~420|Tavuklu Sandviç~390|Füme Etli Sandviç~420|Ton Balıklı Sandviç~380"]]},
+{id:"kahvalti",t:"🍳 Kahvaltı",g:[["","Serpme Kahvaltı~650|Kahvaltı Tabağı~480|Menemen~280|Sucuklu Yumurta~300|Omlet~280|Peynirli Omlet~300|Avokadolu Yumurta~350|Kruvasan Kahvaltı~320|Sucuklu Kaşarlı Kruvasan~350"]]},
+{id:"sicak",t:"☕ Sıcak İçecekler",g:[
+ ["Kahveler","Espresso~150|Double Espresso~180|Americano~200|Ice Americano~220|Filtre Kahve~200|Türk Kahvesi~160|Latte~230|Cappuccino~230|Flat White~240|Mocha~250|Caramel Macchiato~260|White Chocolate Mocha~260|Sıcak Çikolata~230"],
+ ["Çaylar","Çay~80|Fincan Çay~100|Türk Çayı~80|Bitki Çayı~180|Yeşil Çay~170|Earl Grey~170|Chai Tea Latte~240"]]},
+{id:"soguk",t:"🧊 Soğuk İçecekler",g:[
+ ["Soğuk Kahveler","Ice Americano~220|Ice Latte~240|Ice Mocha~260|Ice Caramel Macchiato~270|Cold Brew~240|Cold Brew Latte~260|Frappe~260|Çikolatalı Frappe~280|Vanilyalı Frappe~280|Çilekli Frappe~280"],
+ ["Serinletici İçecekler","Ev Yapımı Limonata~200|Çilekli Limonata~230|Naneli Limonata~220|Portakal Suyu~220|Elma Suyu~200|Şeftali Ice Tea~180|Limon Ice Tea~180|Soda~90|Maden Suyu~100|Meyveli Soda~120|Su~60"],
+ ["Milkshake","Çikolatalı Milkshake~280|Çilekli Milkshake~280|Vanilyalı Milkshake~270|Oreo Milkshake~300|Muzlu Milkshake~290"]]},
+{id:"tatli",t:"🍰 Tatlılar",g:[["","San Sebastian Cheesecake~300|New York Cheesecake~290|Çikolatalı Cheesecake~300|Brownie~280|Sıcak Brownie~320|Brownie & Dondurma~350|Waffle~320|Meyveli Waffle~350|Çikolatalı Waffle~340|Belçika Waffle~350|Çikolatalı Sufle~300|Tiramisu~290|Profiterol~280|Çikolatalı Pasta~290|Havuçlu Kek~240|Mozaik Pasta~250|Lotus Magnolia~280|Çilekli Magnolia~280|Dondurma Topu~100"]]},
+{id:"firin",t:"🥐 Fırın Ürünleri",g:[["","Sade Kruvasan~180|Çikolatalı Kruvasan~220|Bademli Kruvasan~240|Pain au Chocolat~220|Elmalı Tart~240|Çikolatalı Cookie~180|Double Chocolate Cookie~200|Muffin~190|Çikolatalı Muffin~200|Havuçlu Kek~220"]]},
+{id:"ozel",t:"🍹 Özel İçecekler",g:[["","Çilekli Mojito~280|Passion Fruit Cooler~300|Berry Cooler~290|Mango Cooler~290|Çilekli Smoothie~280|Mango Smoothie~290|Orman Meyveli Smoothie~300|Tropical Smoothie~300"]]}
+];
+
+const COL={ana:["#c0562b","#e08a3c"],salata:["#3f8f4a","#8cc152"],sandvic:["#b07a2a","#e0b04a"],kahvalti:["#d98b1f","#f2c14e"],sicak:["#6b3f26","#a8683f"],soguk:["#1f78a8","#46b5d1"],tatli:["#b83a6e","#e8719c"],firin:["#a8662b","#d9a05b"],ozel:["#7b3fb0","#d0559a"]};
+const SEC={ana:"🍽️",salata:"🥗",sandvic:"🥪",kahvalti:"🍳",sicak:"☕",soguk:"🧊",tatli:"🍰",firin:"🥐",ozel:"🍹"};
+const EM=[[/pizza/i,"🍕"],[/burger/i,"🍔"],[/quesadilla|nachos/i,"🌮"],[/makarna|fettuccine|penne/i,"🍝"],[/patates/i,"🍟"],[/soğan/i,"🧅"],[/mozzarella/i,"🧀"],[/tavuk|schnitzel/i,"🍗"],[/köfte|et |etli|dana|sote/i,"🥩"],[/salata/i,"🥗"],[/tost|sandw|sandviç/i,"🥪"],[/menemen|yumurta|omlet|kahvaltı/i,"🍳"],[/kruvasan|pain/i,"🥐"],[/cheesecake/i,"🍰"],[/waffle/i,"🧇"],[/brownie|cookie|sufle/i,"🍫"],[/pasta|kek|tiramisu|magnolia|profiterol|tart|muffin/i,"🧁"],[/dondurma/i,"🍨"],[/milkshake|frappe/i,"🥤"],[/limonata/i,"🍋"],[/portakal/i,"🍊"],[/elma suyu/i,"🍎"],[/ice tea/i,"🧋"],[/cold brew|ice /i,"🧊"],[/soda|maden/i,"🫧"],[/^su$/i,"💧"],[/çikolata/i,"🍫"],[/mojito|cooler/i,"🍹"],[/smoothie/i,"🥭"],[/çay|chai|earl|bitki/i,"🍵"],[/kahve|espresso|americano|latte|cappuccino|flat|mocha|macchiato/i,"☕"]];
+/* Gerçek fotoğraf eklemek için: "Ürün Adı":"images/dosya.jpg" */
+const PHOTOS={};
+
+const $=id=>document.getElementById(id),page=$('page'),home=$('home');
+const clean=t=>t.replace(/^\S+\s/,'');
+const count=s=>s.g.reduce((a,[,i])=>a+i.split('|').length,0);
+const vars=(el,id)=>{el.style.setProperty('--c1',COL[id][0]);el.style.setProperty('--c2',COL[id][1])};
+$('name').innerHTML=[...CAFE_NAME].map((c,i)=>`<span style="animation-delay:${i*60}ms">${c===' '?'&nbsp;':c}</span>`).join('');
+document.title=CAFE_NAME;
+
+/* Ana sayfa kutuları */
+MENU.forEach((s,i)=>{
+  const b=document.createElement('button');b.className='tile';b.style.setProperty('--i',i);vars(b,s.id);
+  b.innerHTML=`<b>${SEC[s.id]}</b><strong>${clean(s.t)}</strong><small>${count(s)} ürün</small>`;
+  b.onclick=e=>{const r=e.currentTarget.getBoundingClientRect();
+    page.style.setProperty('--x',(r.left+r.width/2)+'px');page.style.setProperty('--y',(r.top+r.height/2)+'px');
+    location.hash=s.id};
+  $('tiles').appendChild(b);
+});
+/* Hero emojileri */
+['☕','🍰','🍕','🍔','🥐','🍓','🍩','🧁'].forEach((e,i)=>{const f=document.createElement('span');f.className='fl';f.textContent=e;
+  f.style.left=(6+i*12.5)+'%';f.style.animationDuration=(6+i%4*1.5)+'s';f.style.animationDelay=(i*.9)+'s';$('hero').appendChild(f)});
+
+/* Kategori sayfası */
+function show(s){
+  vars(page,s.id);
+  let n=0,h=`<div class="ph"><div class="row"><button class="back" aria-label="Geri" onclick="history.back()">←</button><h2>${clean(s.t)}</h2></div><b>${SEC[s.id]}</b><input id="q" type="search" placeholder="${clean(s.t)} içinde ara" aria-label="Ara"></div><div class="body">`;
+  s.g.forEach(([name,items])=>{
+    h+=`<div class="grp">`+(name?`<h3>${name}</h3>`:'')+`<div class="grid">`;
+    items.split('|').forEach(i=>{
+      const [t,p]=i.split('~');
+      const e=(EM.find(r=>r[0].test(t))||[0,SEC[s.id]])[1];
+      const ic=PHOTOS[t]?`<img src="${PHOTOS[t]}" alt="${t}" onerror="this.parentNode.textContent='${e}'">`:e;
+      h+=`<div class="item" style="--i:${Math.min(n++,14)}"><span class="ic">${ic}</span><span class="n">${t}</span><span class="p">${p} TL</span></div>`;
+    });
+    h+=`</div></div>`;
+  });
+  page.innerHTML=h+`<p class="empty">Aradığınız ürün bulunamadı.</p></div>`;
+  page.scrollTop=0;
+  page.className='';void page.offsetWidth;page.className='open t-'+s.id;
+  document.body.style.overflow='hidden';
+  const tr=x=>x.toLocaleLowerCase('tr').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  $('q').oninput=e=>{const v=tr(e.target.value.trim());let any=false;
+    page.querySelectorAll('.grp').forEach(g=>{let hit=false;
+      g.querySelectorAll('.item').forEach(i=>{const m=!v||tr(i.querySelector('.n').textContent).includes(v);i.style.display=m?'':'none';if(m)hit=true});
+      g.style.display=hit?'':'none';if(hit)any=true});
+    page.querySelector('.empty').style.display=any?'none':'block'};
+}
+function hide(){
+  if(!page.classList.contains('open'))return;
+  page.className='open leave';
+  setTimeout(()=>{page.className='';page.innerHTML='';document.body.style.overflow='';
+    home.classList.remove('back-in');void home.offsetWidth;home.classList.add('back-in')},340);
+}
+function route(){const s=MENU.find(c=>c.id===location.hash.slice(1));s?show(s):hide()}
+addEventListener('hashchange',route);
+addEventListener('keydown',e=>{if(e.key==='Escape'&&location.hash)history.back()});
+route();
+</script>
+</body>
+</html>
